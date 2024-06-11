@@ -55,9 +55,9 @@ $hotels = [
 
 <body>
     <h2>Stampo Array</h2>
-    <pre>
+    <!-- <pre>
         <?php var_dump($hotels) ?>
-    </pre>
+    </pre> -->
 
     <table class="table">
         <thead>
