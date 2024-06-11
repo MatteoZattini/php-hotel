@@ -41,6 +41,7 @@ $hotels = [
 ];
 
 $parcheggio = $_GET["parcheggio"];
+$voto = $_GET["voto"];
 
 ?>
 
@@ -65,6 +66,7 @@ $parcheggio = $_GET["parcheggio"];
                         <option value="2">no</option>
                         <option value="3">show all</option>
                     </select>
+                    <input name="voto" type="number" min="1" max="5">
                     <button class="btn btn-primary" type="submit">Cerca</button>
                 </form>
             </div>
@@ -86,7 +88,7 @@ $parcheggio = $_GET["parcheggio"];
                     <tbody>
                         <?php
                         foreach ($hotels as $hotel) {
-                            if ($hotel['parking'] == true && $parcheggio == "1") {
+                            if ($hotel['parking'] == true && $parcheggio == "1" && $hotel['vote'] >= $voto ) {
                                 $hotel['parking'] = "yes";
                                 echo "<tr>" .
                                     "<td>" . $hotel['name'] . "</td>" .
@@ -95,7 +97,7 @@ $parcheggio = $_GET["parcheggio"];
                                     "<td>" . $hotel['vote'] . "</td>" .
                                     "<td>" . $hotel['distance_to_center'] . "</td>" .
                                     "</tr>";
-                            } else if ($hotel['parking'] == false && $parcheggio == "2") {
+                            } else if ($hotel['parking'] == false && $parcheggio == "2" && $hotel['vote'] >= $voto ) {
                                 $hotel['parking'] = "no";
                                 echo "<tr>" .
                                     "<td>" . $hotel['name'] . "</td>" .
@@ -104,7 +106,7 @@ $parcheggio = $_GET["parcheggio"];
                                     "<td>" . $hotel['vote'] . "</td>" .
                                     "<td>" . $hotel['distance_to_center'] . "</td>" .
                                     "</tr>";
-                            } else if ($parcheggio == "3") {
+                            } else if ($parcheggio == "3" && $hotel['vote'] >= $voto ) {
                                 if ($hotel['parking'] == true) {
                                     $hotel['parking'] = "yes";
                                 } else {
